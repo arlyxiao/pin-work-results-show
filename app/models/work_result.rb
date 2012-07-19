@@ -1,7 +1,7 @@
 class WorkResult < ActiveRecord::Base
-  has_attached_file :image,  :styles => { :medium => "300x300>", :thumb => "100x100>" }, 
-                    :path => "/web/2012/:class/:id/:style/:basename.:extension",
-                    :url => "/web/2012/:class/:id/:style/:basename.:extension"
+  has_attached_file :image,  :styles => { :medium => "300x300>", :thumb => "100x100>" }
+                    # :path => "/web/2012/:class/:id/:style/:basename.:extension",
+                    # :url => "/web/2012/:class/:id/:style/:basename.:extension"
 
   # --- 给其他类扩展的方法
   module UserMethods

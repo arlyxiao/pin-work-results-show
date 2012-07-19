@@ -1,6 +1,6 @@
 class WorkResultsController < ApplicationController
   def index
-    @work_results = WorkResult.all
+    @work_results = WorkResult.paginate(:page => params[:page], :per_page => 1)
   end
 
   def create
