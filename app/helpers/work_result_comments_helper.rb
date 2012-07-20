@@ -1,0 +1,2 @@
+module WorkResultCommentsHelper
+end

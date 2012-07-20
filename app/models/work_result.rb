@@ -22,6 +22,10 @@ class WorkResult < ActiveRecord::Base
   end
   # end create_view_record
 
+
+  # 引用其它类
+  include Comment::CommentableMethods
+
   # --- 给其他类扩展的方法
   module UserMethods
     def self.included(base)
@@ -33,4 +37,6 @@ class WorkResult < ActiveRecord::Base
     
     end
   end
+  # end UserMethods
+  
 end

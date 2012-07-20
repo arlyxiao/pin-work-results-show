@@ -14,4 +14,12 @@ PinWorkResultsShow::Application.routes.draw do
       get :next
     end
   end
+
+
+  resources :work_result_comments do
+    collection do
+      post :reply
+    end
+  end
+
 end

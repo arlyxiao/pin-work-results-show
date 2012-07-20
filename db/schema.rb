@@ -10,7 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120720091500) do
+ActiveRecord::Schema.define(:version => 20120720105928) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "model_id"
+    t.string   "model_type"
+    t.integer  "creator_id"
+    t.text     "content"
+    t.integer  "reply_comment_id"
+    t.integer  "reply_comment_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "online_records", :force => true do |t|
     t.integer  "user_id"

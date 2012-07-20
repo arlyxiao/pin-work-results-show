@@ -1,7 +1,110 @@
+- content_for :javascript do
+  :javascript
+    jQuery(document).ready(function(){
+
+
+      jQuery('.show-comment').live('click', function(){
+        jQuery('#comment-box').show();
+      });
+
+      jQuery('.cancel-comment').live('click', function(){
+        jQuery('#comment-box').hide();
+      });
+
+
+      jQuery('.add-comment').live('click', function(){
+        var elm = jQuery(this).closest('.add-comment');
+        var id = elm.data('id');
+        var content = jQuery('#comment-work_result-' + id).val();
+
+        $.ajax({
+          type: 'POST',
+          url: "/work_result_comments/",
+          data: {comment: content, work_result_id: id},
+          dataType: "html"
+        }).done(function ( data ) {
+          jQuery('#work_result-' + id + '-comments').html(data);
+        });
+
+      });
+
+
+      jQuery('.del-comment').live('click', function(){
+        var r = confirm("确定删除!")
+        if (r == false) {
+          return false;
+        }
+        var elm = jQuery(this).closest('.del-comment');
+        var id = elm.data('id');
+
+        $.ajax({
+          type: 'DELETE',
+          url: "/work_result_comments/" + id,
+          dataType: "html"
+        }).done(function ( data ) {
+        
+        });
+
+        jQuery('#comment-box-' + id).remove();
+      });
+
+
+      jQuery('.show-reply').live('click', function(){
+        var elm = jQuery(this).closest('.show-reply');
+        var id = elm.data('id');
+        jQuery('#reply-box-' + id).show();
+      });
+
+      jQuery('.cancel-reply').live('click', function(){
+        var elm = jQuery(this).closest('.cancel-reply');
+        var id = elm.data('id');
+
+        jQuery('#reply-box-' + id).hide();
+      });
+
+
+      jQuery('.add-reply').live('click', function(){
+        var elm = jQuery(this).closest('.add-reply');
+        var id = elm.data('id');
+        var work_result_id = elm.data('work_result');
+        var content = jQuery('#reply-content-' + id).val();
+
+        $.ajax({
+          type: 'POST',
+          url: "/work_result_comments/reply",
+          data: {comment: content, id: id, work_result_id: work_result_id},
+          dataType: "html"
+        }).done(function ( data ) {
+          jQuery('#work_result-' + work_result_id + '-comments').html(data);
+        });
+
+      });
+
+    }); 
+
+
 %div
   = image_tag @work_result.image.url(:medium)
   %p= @work_result.creator.name
   %p= @work_result.description
+
+
+  %div
+    %span{:class => "show-comment", "data-id" => @work_result.id}="添加评论"
+  
+
+  %div{:id => "work_result-#{@work_result.id}-comments"}
+    =render 'work_results/parts/comments', :comments => @work_result.comments
+        
+  %div{:id => "comment-box", :style => "display: none;"}  
+    %label 内容
+    %div
+      %textarea{:name => "comment_content", :id => "comment-work_result-#{@work_result.id}", :style => "width: 500px; height: 120px; "}
+    .field
+      %a.form-submit-button{:href=>'javascript:;', :class => "add-comment", "data-id" => @work_result.id} 回复
+      %a.form-submit-button{:href=>'javascript:;', :class => "cancel-comment", "data-id" => @work_result.id} 取消
+
+
 
 :ruby
   view_records = @work_result.view_records
