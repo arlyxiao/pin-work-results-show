@@ -4,6 +4,7 @@
   %div
     = f.file_field :image
   %div
+    = f.hidden_field :kind, :value => params[:kind] unless params[:kind].nil?
     =f.text_area :description, :rows => 3
   %div
     =f.submit "添加"

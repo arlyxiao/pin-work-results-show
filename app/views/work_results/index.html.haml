@@ -53,7 +53,20 @@
   #container
     - @work_results.each do |work_result|
       .box
-        = image_tag work_result.image.url(:medium)
+        - if work_result.image_file_name.blank?
+          - case params[:kind]
+            - when "UI"
+              %img{:height => "300", :src => "/assets/images/kind-ui.png", :width => "300"}/
+            - when "LOGIC"
+              %img{:height => "300", :src => "/assets/images/kind-logic.png", :width => "300"}/
+            - when "CONCEPT"
+              %img{:height => "300", :src => "/assets/images/kind-concept.png", :width => "300"}/
+            - else
+              %img{:height => "300", :src => "/assets/images/kind-logic.png", :width => "300"}/
+
+        -else
+          = image_tag work_result.image.url(:medium)
+
         %p= work_result.creator.name
         %p= work_result.description
 
