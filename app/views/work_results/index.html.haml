@@ -52,7 +52,14 @@
 %section#content
   #container
     - @work_results.each do |work_result|
-      .box
+      :ruby
+        half_users_count = (User.all.length - 1) / 2
+        viewed_count = work_result.view_records.length
+        background_color = ''
+        if viewed_count > half_users_count
+          background_color = '#FFA84E'
+        end
+      .box{:style => "background-color: #{background_color}"}
         - if work_result.image_file_name.blank?
           - case params[:kind]
             - when "UI"
