@@ -59,6 +59,7 @@
     - @work_results.each do |work_result|
       .box
         = image_tag work_result.image.url(:medium)
+        %p= work_result.description
 
   %nav#page-nav{:style => "display: none;"}
     %a{:href => "/work_results/next?page=2"}
