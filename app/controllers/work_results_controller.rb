@@ -23,6 +23,9 @@ class WorkResultsController < ApplicationController
 
   def show
     @work_result = WorkResult.find(params[:id])
+
+    # 创建新的查看记录
+    @work_result.create_view_record(current_user)
   end
 
 end

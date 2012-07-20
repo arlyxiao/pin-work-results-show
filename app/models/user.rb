@@ -41,5 +41,6 @@ class User < ActiveRecord::Base
 
 
   include WorkResult::UserMethods
+  include ViewRecord::UserMethods
   
 end

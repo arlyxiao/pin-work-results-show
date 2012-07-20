@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120720065603) do
+ActiveRecord::Schema.define(:version => 20120720091500) do
 
   create_table "online_records", :force => true do |t|
     t.integer  "user_id"
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(:version => 20120720065603) do
     t.datetime "last_login_time"
     t.boolean  "send_invite_email"
     t.integer  "reputation",                :default => 0,  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "view_records", :force => true do |t|
+    t.integer  "viewer_id"
+    t.integer  "work_result_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
