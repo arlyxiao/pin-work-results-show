@@ -1,4 +1,6 @@
 class WorkResult < ActiveRecord::Base
+  belongs_to :creator, :class_name => 'User', :foreign_key => :creator_id
+  
   has_attached_file :image,  :styles => { :medium => "300x300>", :thumb => "100x100>" }
                     # :path => "/web/2012/:class/:id/:style/:basename.:extension",
                     # :url => "/web/2012/:class/:id/:style/:basename.:extension"

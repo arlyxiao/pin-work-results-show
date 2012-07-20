@@ -46,19 +46,15 @@
 
 
 
-= form_for WorkResult.new, :url => "/work_results", :html => { :multipart => true, :method => 'post' } do |f|
-  %div
-    = f.file_field :image
-  %div
-    =f.text_area :description, :rows => 3
-  %div
-    =f.submit "添加"
+=render 'work_results/parts/nav'
+
 
 %section#content
   #container
     - @work_results.each do |work_result|
       .box
         = image_tag work_result.image.url(:medium)
+        %p= work_result.creator.name
         %p= work_result.description
 
   %nav#page-nav{:style => "display: none;"}

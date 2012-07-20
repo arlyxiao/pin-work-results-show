@@ -1,0 +1,12 @@
+=render 'work_results/parts/nav'
+
+= form_for WorkResult.new, :url => "/work_results", :html => { :multipart => true, :method => 'post' } do |f|
+  %div
+    = f.file_field :image
+  %div
+    =f.text_area :description, :rows => 3
+  %div
+    =f.submit "添加"
+
+
+
