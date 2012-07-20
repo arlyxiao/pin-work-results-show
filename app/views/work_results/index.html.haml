@@ -65,10 +65,10 @@
               %img{:height => "300", :src => "/assets/images/kind-logic.png", :width => "300"}/
 
         -else
-          = image_tag work_result.image.url(:medium)
+          = link_to image_tag(work_result.image.url(:medium)), "/work_results/#{work_result.id}"
 
         %p= work_result.creator.name
-        %p= work_result.description
+        %p= link_to work_result.description, "/work_results/#{work_result.id}"
 
   %nav#page-nav{:style => "display: none;"}
     %a{:href => "/work_results/next?page=2"}

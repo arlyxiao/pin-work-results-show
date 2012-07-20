@@ -20,4 +20,9 @@ class WorkResultsController < ApplicationController
   	render :action => 'index'
   end
 
+
+  def show
+    @work_result = WorkResult.find(params[:id])
+  end
+
 end
