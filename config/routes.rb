@@ -9,5 +9,9 @@ PinWorkResultsShow::Application.routes.draw do
   post '/signup_submit' => 'signup#form_submit'
 
 
-  resources :work_results
+  resources :work_results do
+  	collection do
+      get :next
+    end
+  end
 end

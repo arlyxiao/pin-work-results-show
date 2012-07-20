@@ -10,4 +10,11 @@ class WorkResultsController < ApplicationController
     redirect_to :back
   end
 
+
+  def next
+  	@work_results = WorkResult.paginate(:page => params[:page], :per_page => 1)
+
+  	render :action => 'index'
+  end
+
 end
