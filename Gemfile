@@ -12,6 +12,7 @@ gem 'therubyracer'
 gem 'haml'
 
 gem "paperclip", "~> 2.7"
+gem 'acts-as-taggable-on', '~> 2.3.1'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'

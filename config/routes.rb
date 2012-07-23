@@ -12,6 +12,7 @@ PinWorkResultsShow::Application.routes.draw do
   resources :work_results do
   	collection do
       get :next
+      get :tag
     end
   end
 
@@ -21,5 +22,8 @@ PinWorkResultsShow::Application.routes.draw do
       post :reply
     end
   end
+
+
+  get    '/tags/*path' => 'tags#list_by_tag'
 
 end

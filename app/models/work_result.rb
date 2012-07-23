@@ -6,6 +6,11 @@ class WorkResult < ActiveRecord::Base
                     # :path => "/web/2012/:class/:id/:style/:basename.:extension",
                     # :url => "/web/2012/:class/:id/:style/:basename.:extension"
 
+  
+  # Tags
+  acts_as_ordered_taggable
+
+
   # 创建查看记录
   def create_view_record(user)
     # 如果是自己查看自己页面就直接返回
