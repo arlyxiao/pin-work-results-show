@@ -7,6 +7,7 @@ class WorkResultsController < ApplicationController
   end
 
   def create
+    ActsAsTaggableOn.delimiter = [',', ' ', '，']
     @work_result = current_user.work_results.build( params[:work_result] )
     @work_result.save
 
