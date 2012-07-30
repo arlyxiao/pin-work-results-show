@@ -1,4 +1,10 @@
 class WorkResult < ActiveRecord::Base
+  class Kind
+    UI = "UI"
+    LOGIC = "LOGIC"
+    CONCEPT = "CONCEPT"
+  end
+
   belongs_to :creator, :class_name => 'User', :foreign_key => :creator_id
   has_many :view_records
   
@@ -9,6 +15,10 @@ class WorkResult < ActiveRecord::Base
   
   # Tags
   acts_as_ordered_taggable
+
+  validates :creator, :presence => true
+  validates :description, :presence => true
+  validates :kind, :presence => true, :inclusion => [Kind::UI,Kind::LOGIC,Kind::CONCEPT]
 
 
   # 创建查看记录

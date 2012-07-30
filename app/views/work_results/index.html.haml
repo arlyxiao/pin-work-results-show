@@ -64,12 +64,12 @@
 
       .box{:style => "background-color: #{background_color}"}
         - if work_result.image_file_name.blank?
-          - case params[:kind]
-            - when "UI"
+          - case work_result.kind
+            - when WorkResult::Kind::UI
               %img{:height => "300", :src => "/assets/images/kind-ui.png", :width => "300"}/
-            - when "LOGIC"
+            - when WorkResult::Kind::LOGIC
               %img{:height => "300", :src => "/assets/images/kind-logic.png", :width => "300"}/
-            - when "CONCEPT"
+            - when WorkResult::Kind::CONCEPT
               %img{:height => "300", :src => "/assets/images/kind-concept.png", :width => "300"}/
             - else
               %img{:height => "300", :src => "/assets/images/kind-logic.png", :width => "300"}/
