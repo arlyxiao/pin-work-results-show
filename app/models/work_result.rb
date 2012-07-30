@@ -1,4 +1,10 @@
 class WorkResult < ActiveRecord::Base
+  class Kind
+    UI = "UI"
+    LOGIC = "LOGIC"
+    CONCEPT = "CONCEPT"
+  end
+
   belongs_to :creator, :class_name => 'User', :foreign_key => :creator_id
   has_many :view_records
   
@@ -10,6 +16,10 @@ class WorkResult < ActiveRecord::Base
   # Tags
   acts_as_ordered_taggable
 
+  validates :creator, :presence => true
+  validates :description, :presence => true
+  validates :kind, :presence => true, :inclusion => [Kind::UI,Kind::LOGIC,Kind::CONCEPT]
+
 
   # 创建查看记录
   def create_view_record(user)
@@ -18,12 +28,10 @@ class WorkResult < ActiveRecord::Base
       return false
     end
 
-    viewed = ViewRecord.where(:viewer_id => user.id, :work_result_id => self.id).exists?
     # 如果没有查看过，才添加相关的记录
-    unless viewed then
-      ViewRecord.create(:viewer => user, :work_result => self)
+    if !self.view_records.where(:viewer_id => user.id).exists?
+      self.view_records.create(:viewer => user)
     end
-
   end
   # end create_view_record
 

@@ -46,5 +46,6 @@ module PinWorkResultsShow
     config.assets.version = '1.0'
 
     config.autoload_paths += Dir["#{Rails.root}/lib/**/"]
+    ActsAsTaggableOn.delimiter = [',', ' ', '，']
   end
 end

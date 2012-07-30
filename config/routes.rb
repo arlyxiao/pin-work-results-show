@@ -17,9 +17,11 @@ PinWorkResultsShow::Application.routes.draw do
   end
 
 
-  resources :work_result_comments do
+  # 所有类型的评论都在这里，不单独定义
+  resources :comments do
     collection do
-      post :reply
+      get 'show_model_comments'
+      get 'received' # 我收到的评论
     end
   end
 
