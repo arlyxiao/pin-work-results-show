@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include UserAuthMethods
+  include UserAvatarMethods
   
   has_one :online_record, :dependent => :destroy
   
