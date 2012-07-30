@@ -18,12 +18,10 @@ class WorkResult < ActiveRecord::Base
       return false
     end
 
-    viewed = ViewRecord.where(:viewer_id => user.id, :work_result_id => self.id).exists?
     # 如果没有查看过，才添加相关的记录
-    unless viewed then
-      ViewRecord.create(:viewer => user, :work_result => self)
+    if !self.view_records.where(:viewer_id => user.id).exists?
+      self.view_records.create(:viewer => user)
     end
-
   end
   # end create_view_record
 
